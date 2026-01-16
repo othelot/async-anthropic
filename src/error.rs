@@ -3,6 +3,9 @@ pub enum Error {
     #[error("HTTP error: {0}")]
     EventsourceClientError(#[from] eventsource_client::Error),
 
+    #[error("HTTP error: {0}")]
+    ReqwestClientError(#[from] reqwest::Error),
+
     #[error("Serialization/Deserialization error: {0}")]
     SerializationError(#[from] serde_json::Error),
 }
