@@ -15,30 +15,20 @@ use serde::{Deserialize, Serialize};
 use validator::Validate;
 static REGEX_BETA_MESSAGE_BATCH_INDIVIDUAL_REQUEST_PARAMS_CUSTOM_ID: std::sync::LazyLock<
     regex::Regex,
-> = std::sync::LazyLock::new(|| {
-    regex::Regex::new("^[a-zA-Z0-9_-]{1,64}$").expect("invalid regex")
-});
+> = std::sync::LazyLock::new(|| regex::Regex::new("^[a-zA-Z0-9_-]{1,64}$").expect("invalid regex"));
 static REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID: std::sync::LazyLock<
     regex::Regex,
 > = std::sync::LazyLock::new(|| {
     regex::Regex::new("^srvtoolu_[a-zA-Z0-9_]+$").expect("invalid regex")
 });
-static REGEX_BETA_REQUEST_MCPTOOL_RESULT_BLOCK_TOOL_USE_ID: std::sync::LazyLock<
-    regex::Regex,
-> = std::sync::LazyLock::new(|| {
-    regex::Regex::new("^[a-zA-Z0-9_-]+$").expect("invalid regex")
+static REGEX_BETA_REQUEST_MCPTOOL_RESULT_BLOCK_TOOL_USE_ID: std::sync::LazyLock<regex::Regex> =
+    std::sync::LazyLock::new(|| regex::Regex::new("^[a-zA-Z0-9_-]+$").expect("invalid regex"));
+static REGEX_BETA_TOOL_NAME: std::sync::LazyLock<regex::Regex> = std::sync::LazyLock::new(|| {
+    regex::Regex::new("^[a-zA-Z0-9_-]{1,128}$").expect("invalid regex")
 });
-static REGEX_BETA_TOOL_NAME: std::sync::LazyLock<regex::Regex> = std::sync::LazyLock::new(||
-regex::Regex::new("^[a-zA-Z0-9_-]{1,128}$").expect("invalid regex"));
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct APIError {
@@ -125,16 +115,7 @@ impl core::fmt::Display for AnthropicBeta {
     }
 }
 ///Known values for the string enum.
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum AnthropicBetaKnown {
     #[serde(rename = "message-batches-2024-09-24")]
     #[default]
@@ -209,13 +190,7 @@ impl core::fmt::Display for AnthropicBetaKnown {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct AuthenticationError {
@@ -228,13 +203,7 @@ pub struct AuthenticationError {
     pub r#type: Option<String>,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct Base64ImageSource {
@@ -245,16 +214,7 @@ pub struct Base64ImageSource {
     #[default("base64".to_string())]
     pub r#type: String,
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum Base64ImageSourceMediaType {
     #[serde(rename = "image/jpeg")]
     #[default]
@@ -277,13 +237,7 @@ impl core::fmt::Display for Base64ImageSourceMediaType {
     }
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct Base64PDFSource {
@@ -298,13 +252,7 @@ pub struct Base64PDFSource {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BashTool20250124 {
@@ -324,13 +272,7 @@ pub struct BashTool20250124 {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaAPIError {
@@ -343,13 +285,7 @@ pub struct BetaAPIError {
     pub r#type: Option<String>,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaAllThinkingTurns {
@@ -360,13 +296,7 @@ pub struct BetaAllThinkingTurns {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaAuthenticationError {
@@ -379,13 +309,7 @@ pub struct BetaAuthenticationError {
     pub r#type: Option<String>,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaBase64ImageSource {
@@ -397,13 +321,7 @@ pub struct BetaBase64ImageSource {
     pub r#type: String,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaBase64PDFSource {
@@ -416,16 +334,7 @@ pub struct BetaBase64PDFSource {
     #[default("base64".to_string())]
     pub r#type: String,
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum BetaBashCodeExecutionToolResultErrorCode {
     #[serde(rename = "invalid_tool_input")]
     #[default]
@@ -452,13 +361,7 @@ impl core::fmt::Display for BetaBashCodeExecutionToolResultErrorCode {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaBashTool20241022 {
@@ -481,16 +384,7 @@ pub struct BetaBashTool20241022 {
     #[default("bash_20241022".to_string())]
     pub r#type: String,
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum BetaBashTool20241022AllowedCaller {
     #[serde(rename = "direct")]
     #[default]
@@ -508,13 +402,7 @@ impl core::fmt::Display for BetaBashTool20241022AllowedCaller {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaBashTool20250124 {
@@ -539,13 +427,7 @@ pub struct BetaBashTool20250124 {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaBillingError {
@@ -587,28 +469,21 @@ impl<'de> serde::Deserialize<'de> for BetaBlockKind {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("image") => {
-                serde_json::from_value(value)
-                    .map(Self::Image)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("text") => {
-                serde_json::from_value(value)
-                    .map(Self::Text)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("image") => serde_json::from_value(value)
+                .map(Self::Image)
+                .map_err(serde::de::Error::custom),
+            Some("text") => serde_json::from_value(value)
+                .map(Self::Text)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -662,43 +537,30 @@ impl<'de> serde::Deserialize<'de> for BetaBlockKind2 {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("document") => {
-                serde_json::from_value(value)
-                    .map(Self::Document)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("image") => {
-                serde_json::from_value(value)
-                    .map(Self::Image)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("search_result") => {
-                serde_json::from_value(value)
-                    .map(Self::SearchResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("text") => {
-                serde_json::from_value(value)
-                    .map(Self::Text)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("tool_reference") => {
-                serde_json::from_value(value)
-                    .map(Self::ToolReference)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("document") => serde_json::from_value(value)
+                .map(Self::Document)
+                .map_err(serde::de::Error::custom),
+            Some("image") => serde_json::from_value(value)
+                .map(Self::Image)
+                .map_err(serde::de::Error::custom),
+            Some("search_result") => serde_json::from_value(value)
+                .map(Self::SearchResult)
+                .map_err(serde::de::Error::custom),
+            Some("text") => serde_json::from_value(value)
+                .map(Self::Text)
+                .map_err(serde::de::Error::custom),
+            Some("tool_reference") => serde_json::from_value(value)
+                .map(Self::ToolReference)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -751,13 +613,7 @@ pub struct BetaBodyCreateSkillVersionV1SkillsSkillIdVersionsPost {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaCacheControlEphemeral {
@@ -776,13 +632,7 @@ pub struct BetaCacheControlEphemeral {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaCacheCreation {
@@ -797,13 +647,7 @@ pub struct BetaCacheCreation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaCanceledResult {
@@ -814,13 +658,7 @@ pub struct BetaCanceledResult {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaCitationsDelta {
@@ -866,43 +704,30 @@ impl<'de> serde::Deserialize<'de> for BetaCitationsDeltaCitation {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("char_location") => {
-                serde_json::from_value(value)
-                    .map(Self::Char)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("content_block_location") => {
-                serde_json::from_value(value)
-                    .map(Self::ContentBlock)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("page_location") => {
-                serde_json::from_value(value)
-                    .map(Self::Page)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("search_result_location") => {
-                serde_json::from_value(value)
-                    .map(Self::SearchResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("web_search_result_location") => {
-                serde_json::from_value(value)
-                    .map(Self::WebSearchResult)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("char_location") => serde_json::from_value(value)
+                .map(Self::Char)
+                .map_err(serde::de::Error::custom),
+            Some("content_block_location") => serde_json::from_value(value)
+                .map(Self::ContentBlock)
+                .map_err(serde::de::Error::custom),
+            Some("page_location") => serde_json::from_value(value)
+                .map(Self::Page)
+                .map_err(serde::de::Error::custom),
+            Some("search_result_location") => serde_json::from_value(value)
+                .map(Self::SearchResult)
+                .map_err(serde::de::Error::custom),
+            Some("web_search_result_location") => serde_json::from_value(value)
+                .map(Self::WebSearchResult)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -936,28 +761,21 @@ impl<'de> serde::Deserialize<'de> for BetaClearEditKind {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("clear_thinking_20251015") => {
-                serde_json::from_value(value)
-                    .map(Self::Thinking20251015)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("clear_tool_uses_20250919") => {
-                serde_json::from_value(value)
-                    .map(Self::ToolUses20250919)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("clear_thinking_20251015") => serde_json::from_value(value)
+                .map(Self::Thinking20251015)
+                .map_err(serde::de::Error::custom),
+            Some("clear_tool_uses_20250919") => serde_json::from_value(value)
+                .map(Self::ToolUses20250919)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -971,13 +789,7 @@ impl BetaClearEditKind {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaClearThinking20251015 {
@@ -999,13 +811,7 @@ pub enum BetaClearThinking20251015Keep {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaClearToolUses20250919 {
@@ -1062,23 +868,18 @@ impl<'de> serde::Deserialize<'de> for BetaClearToolUses20250919Keep {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("tool_uses") => {
-                serde_json::from_value(value)
-                    .map(Self::BetaToolUsesKeep)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("tool_uses") => serde_json::from_value(value)
+                .map(Self::BetaToolUsesKeep)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -1121,28 +922,21 @@ impl<'de> serde::Deserialize<'de> for BetaClearToolUses20250919Trigger {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("input_tokens") => {
-                serde_json::from_value(value)
-                    .map(Self::InputTokens)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("tool_uses") => {
-                serde_json::from_value(value)
-                    .map(Self::ToolUses)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("input_tokens") => serde_json::from_value(value)
+                .map(Self::InputTokens)
+                .map_err(serde::de::Error::custom),
+            Some("tool_uses") => serde_json::from_value(value)
+                .map(Self::ToolUses)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -1162,13 +956,7 @@ impl BetaClearToolUses20250919Trigger {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaCodeExecutionTool20250522 {
@@ -1192,13 +980,7 @@ pub struct BetaCodeExecutionTool20250522 {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaCodeExecutionTool20250825 {
@@ -1220,16 +1002,7 @@ pub struct BetaCodeExecutionTool20250825 {
     #[default("code_execution_20250825".to_string())]
     pub r#type: String,
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum BetaCodeExecutionToolResultErrorCode {
     #[serde(rename = "invalid_tool_input")]
     #[default]
@@ -1253,13 +1026,7 @@ impl core::fmt::Display for BetaCodeExecutionToolResultErrorCode {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaComputerUseTool20241022 {
@@ -1292,13 +1059,7 @@ pub struct BetaComputerUseTool20241022 {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaComputerUseTool20250124 {
@@ -1331,13 +1092,7 @@ pub struct BetaComputerUseTool20250124 {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaComputerUseTool20251124 {
@@ -1373,13 +1128,7 @@ pub struct BetaComputerUseTool20251124 {
 ///Information about the container used in the request (for the code execution tool)
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct BetaContainer {
     ///The time at which the container will expire.
@@ -1394,13 +1143,7 @@ pub struct BetaContainer {
 ///Container parameters with skills to be loaded.
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields)]
 pub struct BetaContainerParams {
@@ -1420,9 +1163,7 @@ pub enum BetaContentBlock {
     RedactedThinking(BetaResponseRedactedThinkingBlock),
     ServerToolUse(BetaResponseServerToolUseBlock),
     Text(BetaResponseTextBlock),
-    TextEditorCodeExecutionToolResult(
-        BetaResponseTextEditorCodeExecutionToolResultBlock,
-    ),
+    TextEditorCodeExecutionToolResult(BetaResponseTextEditorCodeExecutionToolResultBlock),
     Thinking(BetaResponseThinkingBlock),
     ToolSearchToolResult(BetaResponseToolSearchToolResultBlock),
     ToolUse(BetaResponseToolUseBlock),
@@ -1434,9 +1175,7 @@ impl BetaContentBlock {
 }
 impl Default for BetaContentBlock {
     fn default() -> Self {
-        Self::BashCodeExecutionToolResult(
-            <BetaResponseBashCodeExecutionToolResultBlock>::default(),
-        )
+        Self::BashCodeExecutionToolResult(<BetaResponseBashCodeExecutionToolResultBlock>::default())
     }
 }
 impl serde::Serialize for BetaContentBlock {
@@ -1468,88 +1207,57 @@ impl<'de> serde::Deserialize<'de> for BetaContentBlock {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("bash_code_execution_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::BashCodeExecutionToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("code_execution_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::CodeExecutionToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("container_upload") => {
-                serde_json::from_value(value)
-                    .map(Self::ContainerUpload)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("mcp_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::MCPToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("mcp_tool_use") => {
-                serde_json::from_value(value)
-                    .map(Self::MCPToolUse)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("redacted_thinking") => {
-                serde_json::from_value(value)
-                    .map(Self::RedactedThinking)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("server_tool_use") => {
-                serde_json::from_value(value)
-                    .map(Self::ServerToolUse)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("text") => {
-                serde_json::from_value(value)
-                    .map(Self::Text)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("text_editor_code_execution_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::TextEditorCodeExecutionToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("thinking") => {
-                serde_json::from_value(value)
-                    .map(Self::Thinking)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("tool_search_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::ToolSearchToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("tool_use") => {
-                serde_json::from_value(value)
-                    .map(Self::ToolUse)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("web_fetch_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::WebFetchToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("web_search_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::WebSearchToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("bash_code_execution_tool_result") => serde_json::from_value(value)
+                .map(Self::BashCodeExecutionToolResult)
+                .map_err(serde::de::Error::custom),
+            Some("code_execution_tool_result") => serde_json::from_value(value)
+                .map(Self::CodeExecutionToolResult)
+                .map_err(serde::de::Error::custom),
+            Some("container_upload") => serde_json::from_value(value)
+                .map(Self::ContainerUpload)
+                .map_err(serde::de::Error::custom),
+            Some("mcp_tool_result") => serde_json::from_value(value)
+                .map(Self::MCPToolResult)
+                .map_err(serde::de::Error::custom),
+            Some("mcp_tool_use") => serde_json::from_value(value)
+                .map(Self::MCPToolUse)
+                .map_err(serde::de::Error::custom),
+            Some("redacted_thinking") => serde_json::from_value(value)
+                .map(Self::RedactedThinking)
+                .map_err(serde::de::Error::custom),
+            Some("server_tool_use") => serde_json::from_value(value)
+                .map(Self::ServerToolUse)
+                .map_err(serde::de::Error::custom),
+            Some("text") => serde_json::from_value(value)
+                .map(Self::Text)
+                .map_err(serde::de::Error::custom),
+            Some("text_editor_code_execution_tool_result") => serde_json::from_value(value)
+                .map(Self::TextEditorCodeExecutionToolResult)
+                .map_err(serde::de::Error::custom),
+            Some("thinking") => serde_json::from_value(value)
+                .map(Self::Thinking)
+                .map_err(serde::de::Error::custom),
+            Some("tool_search_tool_result") => serde_json::from_value(value)
+                .map(Self::ToolSearchToolResult)
+                .map_err(serde::de::Error::custom),
+            Some("tool_use") => serde_json::from_value(value)
+                .map(Self::ToolUse)
+                .map_err(serde::de::Error::custom),
+            Some("web_fetch_tool_result") => serde_json::from_value(value)
+                .map(Self::WebFetchToolResult)
+                .map_err(serde::de::Error::custom),
+            Some("web_search_tool_result") => serde_json::from_value(value)
+                .map(Self::WebSearchToolResult)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -1615,43 +1323,30 @@ impl<'de> serde::Deserialize<'de> for BetaContentBlockDeltaEventDelta {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("citations_delta") => {
-                serde_json::from_value(value)
-                    .map(Self::Citations)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("input_json_delta") => {
-                serde_json::from_value(value)
-                    .map(Self::InputJsonContentBlock)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("signature_delta") => {
-                serde_json::from_value(value)
-                    .map(Self::SignatureContentBlock)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("text_delta") => {
-                serde_json::from_value(value)
-                    .map(Self::TextContentBlock)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("thinking_delta") => {
-                serde_json::from_value(value)
-                    .map(Self::ThinkingContentBlock)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("citations_delta") => serde_json::from_value(value)
+                .map(Self::Citations)
+                .map_err(serde::de::Error::custom),
+            Some("input_json_delta") => serde_json::from_value(value)
+                .map(Self::InputJsonContentBlock)
+                .map_err(serde::de::Error::custom),
+            Some("signature_delta") => serde_json::from_value(value)
+                .map(Self::SignatureContentBlock)
+                .map_err(serde::de::Error::custom),
+            Some("text_delta") => serde_json::from_value(value)
+                .map(Self::TextContentBlock)
+                .map_err(serde::de::Error::custom),
+            Some("thinking_delta") => serde_json::from_value(value)
+                .map(Self::ThinkingContentBlock)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -1688,13 +1383,7 @@ impl BetaContentBlockDeltaEventDelta {
     }
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaContentBlockSource {
@@ -1734,13 +1423,7 @@ pub struct BetaContentBlockStopEvent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields)]
 pub struct BetaContextManagementConfig {
@@ -1755,13 +1438,7 @@ pub struct BetaContextManagementResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields)]
 pub struct BetaCountMessageTokensParams {
@@ -1925,13 +1602,7 @@ pub struct BetaCountMessageTokensResponse {
     pub input_tokens: i64,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields)]
 pub struct BetaCreateMessageBatchParams {
@@ -1941,13 +1612,7 @@ pub struct BetaCreateMessageBatchParams {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields)]
 pub struct BetaCreateMessageParams {
@@ -2164,13 +1829,7 @@ pub enum BetaCreateMessageParamsSystem {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaCreateSkillResponse {
@@ -2210,13 +1869,7 @@ pub struct BetaCreateSkillResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaCreateSkillVersionResponse {
@@ -2261,13 +1914,7 @@ pub struct BetaCreateSkillVersionResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaDeleteMessageBatchResponse {
@@ -2284,13 +1931,7 @@ pub struct BetaDeleteMessageBatchResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaDeleteSkillResponse {
@@ -2309,13 +1950,7 @@ pub struct BetaDeleteSkillResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaDeleteSkillVersionResponse {
@@ -2334,13 +1969,7 @@ pub struct BetaDeleteSkillVersionResponse {
 }
 ///Tool invocation directly from the model.
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaDirectCaller {
@@ -2379,42 +2008,26 @@ impl<'de> serde::Deserialize<'de> for BetaEditKind {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("clear_thinking_20251015") => {
-                serde_json::from_value(value)
-                    .map(Self::Thinking20251015)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("clear_tool_uses_20250919") => {
-                serde_json::from_value(value)
-                    .map(Self::ToolUses20250919)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("clear_thinking_20251015") => serde_json::from_value(value)
+                .map(Self::Thinking20251015)
+                .map_err(serde::de::Error::custom),
+            Some("clear_tool_uses_20250919") => serde_json::from_value(value)
+                .map(Self::ToolUses20250919)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
 ///All possible effort levels.
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum BetaEffortLevel {
     #[serde(rename = "low")]
     #[default]
@@ -2435,13 +2048,7 @@ impl core::fmt::Display for BetaEffortLevel {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaErrorResponse {
@@ -2496,63 +2103,42 @@ impl<'de> serde::Deserialize<'de> for BetaErrorResponseError {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("api_error") => {
-                serde_json::from_value(value)
-                    .map(Self::API)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("authentication_error") => {
-                serde_json::from_value(value)
-                    .map(Self::Authentication)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("billing_error") => {
-                serde_json::from_value(value)
-                    .map(Self::Billing)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("timeout_error") => {
-                serde_json::from_value(value)
-                    .map(Self::GatewayTimeout)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("invalid_request_error") => {
-                serde_json::from_value(value)
-                    .map(Self::InvalidRequest)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("not_found_error") => {
-                serde_json::from_value(value)
-                    .map(Self::NotFound)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("overloaded_error") => {
-                serde_json::from_value(value)
-                    .map(Self::Overloaded)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("permission_error") => {
-                serde_json::from_value(value)
-                    .map(Self::Permission)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("rate_limit_error") => {
-                serde_json::from_value(value)
-                    .map(Self::RateLimit)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("api_error") => serde_json::from_value(value)
+                .map(Self::API)
+                .map_err(serde::de::Error::custom),
+            Some("authentication_error") => serde_json::from_value(value)
+                .map(Self::Authentication)
+                .map_err(serde::de::Error::custom),
+            Some("billing_error") => serde_json::from_value(value)
+                .map(Self::Billing)
+                .map_err(serde::de::Error::custom),
+            Some("timeout_error") => serde_json::from_value(value)
+                .map(Self::GatewayTimeout)
+                .map_err(serde::de::Error::custom),
+            Some("invalid_request_error") => serde_json::from_value(value)
+                .map(Self::InvalidRequest)
+                .map_err(serde::de::Error::custom),
+            Some("not_found_error") => serde_json::from_value(value)
+                .map(Self::NotFound)
+                .map_err(serde::de::Error::custom),
+            Some("overloaded_error") => serde_json::from_value(value)
+                .map(Self::Overloaded)
+                .map_err(serde::de::Error::custom),
+            Some("permission_error") => serde_json::from_value(value)
+                .map(Self::Permission)
+                .map_err(serde::de::Error::custom),
+            Some("rate_limit_error") => serde_json::from_value(value)
+                .map(Self::RateLimit)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -2587,13 +2173,7 @@ impl BetaErrorResponseError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaErroredResult {
@@ -2606,13 +2186,7 @@ pub struct BetaErroredResult {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaExpiredResult {
@@ -2623,13 +2197,7 @@ pub struct BetaExpiredResult {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaFileDeleteResponse {
@@ -2644,13 +2212,7 @@ pub struct BetaFileDeleteResponse {
     pub r#type: Option<String>,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaFileDocumentSource {
@@ -2662,13 +2224,7 @@ pub struct BetaFileDocumentSource {
     pub r#type: String,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaFileImageSource {
@@ -2681,13 +2237,7 @@ pub struct BetaFileImageSource {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaFileListResponse {
@@ -2704,13 +2254,7 @@ pub struct BetaFileListResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaFileMetadataSchema {
@@ -2743,13 +2287,7 @@ pub struct BetaFileMetadataSchema {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaGatewayTimeoutError {
@@ -2763,13 +2301,7 @@ pub struct BetaGatewayTimeoutError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaGetSkillResponse {
@@ -2809,13 +2341,7 @@ pub struct BetaGetSkillResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaGetSkillVersionResponse {
@@ -2884,9 +2410,7 @@ impl BetaInputContentBlock {
 }
 impl Default for BetaInputContentBlock {
     fn default() -> Self {
-        Self::BashCodeExecutionToolResult(
-            <BetaRequestBashCodeExecutionToolResultBlock>::default(),
-        )
+        Self::BashCodeExecutionToolResult(<BetaRequestBashCodeExecutionToolResultBlock>::default())
     }
 }
 impl serde::Serialize for BetaInputContentBlock {
@@ -2922,108 +2446,69 @@ impl<'de> serde::Deserialize<'de> for BetaInputContentBlock {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("bash_code_execution_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::BashCodeExecutionToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("code_execution_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::CodeExecutionToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("container_upload") => {
-                serde_json::from_value(value)
-                    .map(Self::ContainerUpload)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("document") => {
-                serde_json::from_value(value)
-                    .map(Self::Document)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("image") => {
-                serde_json::from_value(value)
-                    .map(Self::Image)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("mcp_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::MCPToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("mcp_tool_use") => {
-                serde_json::from_value(value)
-                    .map(Self::MCPToolUse)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("redacted_thinking") => {
-                serde_json::from_value(value)
-                    .map(Self::RedactedThinking)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("search_result") => {
-                serde_json::from_value(value)
-                    .map(Self::SearchResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("server_tool_use") => {
-                serde_json::from_value(value)
-                    .map(Self::ServerToolUse)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("text") => {
-                serde_json::from_value(value)
-                    .map(Self::Text)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("text_editor_code_execution_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::TextEditorCodeExecutionToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("thinking") => {
-                serde_json::from_value(value)
-                    .map(Self::Thinking)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::ToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("tool_search_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::ToolSearchToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("tool_use") => {
-                serde_json::from_value(value)
-                    .map(Self::ToolUse)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("web_fetch_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::WebFetchToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("web_search_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::WebSearchToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("bash_code_execution_tool_result") => serde_json::from_value(value)
+                .map(Self::BashCodeExecutionToolResult)
+                .map_err(serde::de::Error::custom),
+            Some("code_execution_tool_result") => serde_json::from_value(value)
+                .map(Self::CodeExecutionToolResult)
+                .map_err(serde::de::Error::custom),
+            Some("container_upload") => serde_json::from_value(value)
+                .map(Self::ContainerUpload)
+                .map_err(serde::de::Error::custom),
+            Some("document") => serde_json::from_value(value)
+                .map(Self::Document)
+                .map_err(serde::de::Error::custom),
+            Some("image") => serde_json::from_value(value)
+                .map(Self::Image)
+                .map_err(serde::de::Error::custom),
+            Some("mcp_tool_result") => serde_json::from_value(value)
+                .map(Self::MCPToolResult)
+                .map_err(serde::de::Error::custom),
+            Some("mcp_tool_use") => serde_json::from_value(value)
+                .map(Self::MCPToolUse)
+                .map_err(serde::de::Error::custom),
+            Some("redacted_thinking") => serde_json::from_value(value)
+                .map(Self::RedactedThinking)
+                .map_err(serde::de::Error::custom),
+            Some("search_result") => serde_json::from_value(value)
+                .map(Self::SearchResult)
+                .map_err(serde::de::Error::custom),
+            Some("server_tool_use") => serde_json::from_value(value)
+                .map(Self::ServerToolUse)
+                .map_err(serde::de::Error::custom),
+            Some("text") => serde_json::from_value(value)
+                .map(Self::Text)
+                .map_err(serde::de::Error::custom),
+            Some("text_editor_code_execution_tool_result") => serde_json::from_value(value)
+                .map(Self::TextEditorCodeExecutionToolResult)
+                .map_err(serde::de::Error::custom),
+            Some("thinking") => serde_json::from_value(value)
+                .map(Self::Thinking)
+                .map_err(serde::de::Error::custom),
+            Some("tool_result") => serde_json::from_value(value)
+                .map(Self::ToolResult)
+                .map_err(serde::de::Error::custom),
+            Some("tool_search_tool_result") => serde_json::from_value(value)
+                .map(Self::ToolSearchToolResult)
+                .map_err(serde::de::Error::custom),
+            Some("tool_use") => serde_json::from_value(value)
+                .map(Self::ToolUse)
+                .map_err(serde::de::Error::custom),
+            Some("web_fetch_tool_result") => serde_json::from_value(value)
+                .map(Self::WebFetchToolResult)
+                .map_err(serde::de::Error::custom),
+            Some("web_search_tool_result") => serde_json::from_value(value)
+                .map(Self::WebSearchToolResult)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -3075,13 +2560,7 @@ impl BetaInputContentBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaInputJsonContentBlockDelta {
@@ -3107,13 +2586,7 @@ pub enum BetaInputMessageContent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaInputSchema {
@@ -3125,13 +2598,7 @@ pub struct BetaInputSchema {
     pub r#type: String,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaInputTokensClearAtLeast {
@@ -3143,13 +2610,7 @@ pub struct BetaInputTokensClearAtLeast {
     pub value: i64,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaInputTokensTrigger {
@@ -3162,13 +2623,7 @@ pub struct BetaInputTokensTrigger {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaInvalidRequestError {
@@ -3181,13 +2636,7 @@ pub struct BetaInvalidRequestError {
     pub r#type: Option<String>,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaJsonOutputFormat {
@@ -3201,13 +2650,7 @@ pub struct BetaJsonOutputFormat {
 pub type BetaJsonValue = serde_json::Value;
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct BetaListResponseMessageBatch {
     #[validate(nested)]
@@ -3221,13 +2664,7 @@ pub struct BetaListResponseMessageBatch {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct BetaListResponseModelInfo {
     #[validate(nested)]
@@ -3241,13 +2678,7 @@ pub struct BetaListResponseModelInfo {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct BetaListSkillVersionsResponse {
     ///List of skill versions.
@@ -3260,13 +2691,7 @@ pub struct BetaListSkillVersionsResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct BetaListSkillsResponse {
     ///List of skills.
@@ -3317,43 +2742,30 @@ impl<'de> serde::Deserialize<'de> for BetaLocationCitationKind {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("char_location") => {
-                serde_json::from_value(value)
-                    .map(Self::Char)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("content_block_location") => {
-                serde_json::from_value(value)
-                    .map(Self::ContentBlock)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("page_location") => {
-                serde_json::from_value(value)
-                    .map(Self::Page)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("search_result_location") => {
-                serde_json::from_value(value)
-                    .map(Self::SearchResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("web_search_result_location") => {
-                serde_json::from_value(value)
-                    .map(Self::WebSearchResult)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("char_location") => serde_json::from_value(value)
+                .map(Self::Char)
+                .map_err(serde::de::Error::custom),
+            Some("content_block_location") => serde_json::from_value(value)
+                .map(Self::ContentBlock)
+                .map_err(serde::de::Error::custom),
+            Some("page_location") => serde_json::from_value(value)
+                .map(Self::Page)
+                .map_err(serde::de::Error::custom),
+            Some("search_result_location") => serde_json::from_value(value)
+                .map(Self::SearchResult)
+                .map_err(serde::de::Error::custom),
+            Some("web_search_result_location") => serde_json::from_value(value)
+                .map(Self::WebSearchResult)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -3379,13 +2791,7 @@ pub struct BetaMCPToolDefaultConfig {
 ///from an MCP server, with optional per-tool overrides.
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaMCPToolset {
@@ -3406,13 +2812,7 @@ pub struct BetaMCPToolset {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaMemoryTool20250818 {
@@ -3473,60 +2873,39 @@ impl<'de> serde::Deserialize<'de> for BetaMemoryTool20250818Command {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("create") => {
-                serde_json::from_value(value)
-                    .map(Self::Create)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("delete") => {
-                serde_json::from_value(value)
-                    .map(Self::Delete)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("insert") => {
-                serde_json::from_value(value)
-                    .map(Self::Insert)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("rename") => {
-                serde_json::from_value(value)
-                    .map(Self::Rename)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("str_replace") => {
-                serde_json::from_value(value)
-                    .map(Self::StrReplace)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("view") => {
-                serde_json::from_value(value)
-                    .map(Self::View)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("create") => serde_json::from_value(value)
+                .map(Self::Create)
+                .map_err(serde::de::Error::custom),
+            Some("delete") => serde_json::from_value(value)
+                .map(Self::Delete)
+                .map_err(serde::de::Error::custom),
+            Some("insert") => serde_json::from_value(value)
+                .map(Self::Insert)
+                .map_err(serde::de::Error::custom),
+            Some("rename") => serde_json::from_value(value)
+                .map(Self::Rename)
+                .map_err(serde::de::Error::custom),
+            Some("str_replace") => serde_json::from_value(value)
+                .map(Self::StrReplace)
+                .map_err(serde::de::Error::custom),
+            Some("view") => serde_json::from_value(value)
+                .map(Self::View)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "command"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "command"
+            ))),
         }
     }
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaMemoryTool20250818CreateCommand {
@@ -3542,13 +2921,7 @@ pub struct BetaMemoryTool20250818CreateCommand {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaMemoryTool20250818DeleteCommand {
@@ -3561,13 +2934,7 @@ pub struct BetaMemoryTool20250818DeleteCommand {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaMemoryTool20250818InsertCommand {
@@ -3586,13 +2953,7 @@ pub struct BetaMemoryTool20250818InsertCommand {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaMemoryTool20250818RenameCommand {
@@ -3608,13 +2969,7 @@ pub struct BetaMemoryTool20250818RenameCommand {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaMemoryTool20250818StrReplaceCommand {
@@ -3633,13 +2988,7 @@ pub struct BetaMemoryTool20250818StrReplaceCommand {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaMemoryTool20250818ViewCommand {
@@ -3655,13 +3004,7 @@ pub struct BetaMemoryTool20250818ViewCommand {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaMessage {
@@ -3743,13 +3086,7 @@ pub struct BetaMessage {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaMessageBatch {
@@ -3786,13 +3123,7 @@ pub struct BetaMessageBatch {
     pub r#type: Option<String>,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields)]
 pub struct BetaMessageBatchIndividualRequestParams {
@@ -3809,13 +3140,7 @@ pub struct BetaMessageBatchIndividualRequestParams {
 }
 ///This is a single line in the response `.jsonl` file and does not represent the response as a whole.
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct BetaMessageBatchIndividualResponse {
     ///Developer-provided ID created for each request in a Message Batch. Useful for matching results to requests, as results may be given out of request order.
@@ -3865,38 +3190,27 @@ impl<'de> serde::Deserialize<'de> for BetaMessageBatchIndividualResponseResult {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("canceled") => {
-                serde_json::from_value(value)
-                    .map(Self::Canceled)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("errored") => {
-                serde_json::from_value(value)
-                    .map(Self::Errored)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("expired") => {
-                serde_json::from_value(value)
-                    .map(Self::Expired)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("succeeded") => {
-                serde_json::from_value(value)
-                    .map(Self::Succeeded)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("canceled") => serde_json::from_value(value)
+                .map(Self::Canceled)
+                .map_err(serde::de::Error::custom),
+            Some("errored") => serde_json::from_value(value)
+                .map(Self::Errored)
+                .map_err(serde::de::Error::custom),
+            Some("expired") => serde_json::from_value(value)
+                .map(Self::Expired)
+                .map_err(serde::de::Error::custom),
+            Some("succeeded") => serde_json::from_value(value)
+                .map(Self::Succeeded)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -3928,13 +3242,7 @@ impl BetaMessageBatchIndividualResponseResult {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct BetaMessageDelta {
     ///Information about the container used in this request.
@@ -3947,13 +3255,7 @@ pub struct BetaMessageDelta {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaMessageDeltaEvent {
@@ -3970,13 +3272,7 @@ pub struct BetaMessageDeltaEvent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct BetaMessageDeltaUsage {
     ///The cumulative number of input tokens used to create the cache entry.
@@ -3993,13 +3289,7 @@ pub struct BetaMessageDeltaUsage {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaMessageStartEvent {
@@ -4057,48 +3347,33 @@ impl<'de> serde::Deserialize<'de> for BetaMessageStreamEvent {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("content_block_delta") => {
-                serde_json::from_value(value)
-                    .map(Self::ContentBlockDelta)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("content_block_start") => {
-                serde_json::from_value(value)
-                    .map(Self::ContentBlockStart)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("content_block_stop") => {
-                serde_json::from_value(value)
-                    .map(Self::ContentBlockStop)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("message_delta") => {
-                serde_json::from_value(value)
-                    .map(Self::MessageDelta)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("message_start") => {
-                serde_json::from_value(value)
-                    .map(Self::MessageStart)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("message_stop") => {
-                serde_json::from_value(value)
-                    .map(Self::MessageStop)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("content_block_delta") => serde_json::from_value(value)
+                .map(Self::ContentBlockDelta)
+                .map_err(serde::de::Error::custom),
+            Some("content_block_start") => serde_json::from_value(value)
+                .map(Self::ContentBlockStart)
+                .map_err(serde::de::Error::custom),
+            Some("content_block_stop") => serde_json::from_value(value)
+                .map(Self::ContentBlockStop)
+                .map_err(serde::de::Error::custom),
+            Some("message_delta") => serde_json::from_value(value)
+                .map(Self::MessageDelta)
+                .map_err(serde::de::Error::custom),
+            Some("message_start") => serde_json::from_value(value)
+                .map(Self::MessageStart)
+                .map_err(serde::de::Error::custom),
+            Some("message_stop") => serde_json::from_value(value)
+                .map(Self::MessageStop)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -4130,13 +3405,7 @@ pub struct BetaMetadata {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaModelInfo {
@@ -4158,13 +3427,7 @@ pub struct BetaModelInfo {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaNotFoundError {
@@ -4187,13 +3450,7 @@ pub struct BetaOutputConfig {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaOverloadedError {
@@ -4207,13 +3464,7 @@ pub struct BetaOverloadedError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaPermissionError {
@@ -4226,13 +3477,7 @@ pub struct BetaPermissionError {
     pub r#type: Option<String>,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaPlainTextSource {
@@ -4248,13 +3493,7 @@ pub struct BetaPlainTextSource {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaRateLimitError {
@@ -4267,13 +3506,7 @@ pub struct BetaRateLimitError {
     pub r#type: Option<String>,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestBashCodeExecutionOutputBlock {
@@ -4285,13 +3518,7 @@ pub struct BetaRequestBashCodeExecutionOutputBlock {
     pub r#type: String,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestBashCodeExecutionResultBlock {
@@ -4309,13 +3536,7 @@ pub struct BetaRequestBashCodeExecutionResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestBashCodeExecutionToolResultBlock {
@@ -4325,9 +3546,7 @@ pub struct BetaRequestBashCodeExecutionToolResultBlock {
     pub content: BetaRequestBashCodeExecutionToolResultBlockContent,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub tool_use_id: String,
     #[doc(hidden)]
@@ -4351,13 +3570,7 @@ impl BetaRequestBashCodeExecutionToolResultBlockContent {
     }
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestBashCodeExecutionToolResultError {
@@ -4369,13 +3582,7 @@ pub struct BetaRequestBashCodeExecutionToolResultError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestCharLocationCitation {
@@ -4399,13 +3606,7 @@ pub struct BetaRequestCitationsConfig {
     pub enabled: Option<bool>,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestCodeExecutionOutputBlock {
@@ -4417,13 +3618,7 @@ pub struct BetaRequestCodeExecutionOutputBlock {
     pub r#type: String,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestCodeExecutionResultBlock {
@@ -4441,13 +3636,7 @@ pub struct BetaRequestCodeExecutionResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestCodeExecutionToolResultBlock {
@@ -4457,9 +3646,7 @@ pub struct BetaRequestCodeExecutionToolResultBlock {
     pub content: BetaRequestCodeExecutionToolResultBlockContent,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub tool_use_id: String,
     #[doc(hidden)]
@@ -4483,13 +3670,7 @@ impl BetaRequestCodeExecutionToolResultBlockContent {
     }
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestCodeExecutionToolResultError {
@@ -4503,13 +3684,7 @@ pub struct BetaRequestCodeExecutionToolResultError {
 ///Files uploaded via this block will be available in the container's input directory.
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestContainerUploadBlock {
@@ -4525,13 +3700,7 @@ pub struct BetaRequestContainerUploadBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestContentBlockLocationCitation {
@@ -4578,13 +3747,7 @@ pub struct BetaRequestCounts {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestDocumentBlock {
@@ -4636,43 +3799,30 @@ impl<'de> serde::Deserialize<'de> for BetaRequestDocumentBlockSource {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("base64") => {
-                serde_json::from_value(value)
-                    .map(Self::Base64PDF)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("content") => {
-                serde_json::from_value(value)
-                    .map(Self::ContentBlock)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("file") => {
-                serde_json::from_value(value)
-                    .map(Self::FileDocument)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("text") => {
-                serde_json::from_value(value)
-                    .map(Self::PlainText)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("url") => {
-                serde_json::from_value(value)
-                    .map(Self::URLPDF)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("base64") => serde_json::from_value(value)
+                .map(Self::Base64PDF)
+                .map_err(serde::de::Error::custom),
+            Some("content") => serde_json::from_value(value)
+                .map(Self::ContentBlock)
+                .map_err(serde::de::Error::custom),
+            Some("file") => serde_json::from_value(value)
+                .map(Self::FileDocument)
+                .map_err(serde::de::Error::custom),
+            Some("text") => serde_json::from_value(value)
+                .map(Self::PlainText)
+                .map_err(serde::de::Error::custom),
+            Some("url") => serde_json::from_value(value)
+                .map(Self::URLPDF)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -4710,13 +3860,7 @@ impl BetaRequestDocumentBlockSource {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestImageBlock {
@@ -4761,33 +3905,24 @@ impl<'de> serde::Deserialize<'de> for BetaRequestImageBlockSource {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("base64") => {
-                serde_json::from_value(value)
-                    .map(Self::Base64)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("file") => {
-                serde_json::from_value(value)
-                    .map(Self::File)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("url") => {
-                serde_json::from_value(value)
-                    .map(Self::URL)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("base64") => serde_json::from_value(value)
+                .map(Self::Base64)
+                .map_err(serde::de::Error::custom),
+            Some("file") => serde_json::from_value(value)
+                .map(Self::File)
+                .map_err(serde::de::Error::custom),
+            Some("url") => serde_json::from_value(value)
+                .map(Self::URL)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -4814,13 +3949,7 @@ pub struct BetaRequestMCPServerToolConfiguration {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestMCPServerURLDefinition {
@@ -4837,13 +3966,7 @@ pub struct BetaRequestMCPServerURLDefinition {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestMCPToolResultBlock {
@@ -4871,13 +3994,7 @@ pub enum BetaRequestMCPToolResultBlockContent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestMCPToolUseBlock {
@@ -4902,13 +4019,7 @@ pub struct BetaRequestMCPToolUseBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestPageLocationCitation {
@@ -4927,13 +4038,7 @@ pub struct BetaRequestPageLocationCitation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestRedactedThinkingBlock {
@@ -4946,13 +4051,7 @@ pub struct BetaRequestRedactedThinkingBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestSearchResultBlock {
@@ -4973,13 +4072,7 @@ pub struct BetaRequestSearchResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestSearchResultLocationCitation {
@@ -5000,13 +4093,7 @@ pub struct BetaRequestSearchResultLocationCitation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestServerToolUseBlock {
@@ -5016,9 +4103,7 @@ pub struct BetaRequestServerToolUseBlock {
     pub caller: Option<ToolUseBlockCaller>,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub id: String,
     pub input: std::collections::HashMap<String, serde_json::Value>,
@@ -5030,13 +4115,7 @@ pub struct BetaRequestServerToolUseBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestTextBlock {
@@ -5058,13 +4137,7 @@ pub enum BetaRequestTextBlockCitations {
     Array(Vec<BetaLocationCitationKind>),
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestTextEditorCodeExecutionCreateResultBlock {
@@ -5076,13 +4149,7 @@ pub struct BetaRequestTextEditorCodeExecutionCreateResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestTextEditorCodeExecutionStrReplaceResultBlock {
@@ -5098,13 +4165,7 @@ pub struct BetaRequestTextEditorCodeExecutionStrReplaceResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestTextEditorCodeExecutionToolResultBlock {
@@ -5114,9 +4175,7 @@ pub struct BetaRequestTextEditorCodeExecutionToolResultBlock {
     pub content: BetaRequestTextEditorCodeExecutionToolResultBlockContent,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub tool_use_id: String,
     #[doc(hidden)]
@@ -5154,13 +4213,7 @@ impl BetaRequestTextEditorCodeExecutionToolResultBlockContent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestTextEditorCodeExecutionToolResultError {
@@ -5173,13 +4226,7 @@ pub struct BetaRequestTextEditorCodeExecutionToolResultError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestTextEditorCodeExecutionViewResultBlock {
@@ -5196,13 +4243,7 @@ pub struct BetaRequestTextEditorCodeExecutionViewResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestThinkingBlock {
@@ -5218,13 +4259,7 @@ pub struct BetaRequestThinkingBlock {
 ///Tool reference block that can be included in tool_result content.
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestToolReferenceBlock {
@@ -5243,13 +4278,7 @@ pub struct BetaRequestToolReferenceBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestToolResultBlock {
@@ -5277,13 +4306,7 @@ pub enum BetaRequestToolResultBlockContent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestToolSearchToolResultBlock {
@@ -5293,9 +4316,7 @@ pub struct BetaRequestToolSearchToolResultBlock {
     pub content: BetaRequestToolSearchToolResultBlockContent,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub tool_use_id: String,
     #[doc(hidden)]
@@ -5317,9 +4338,7 @@ impl BetaRequestToolSearchToolResultBlockContent {
             ..Default::default()
         })
     }
-    pub fn search_result_block(
-        tool_references: Vec<BetaRequestToolReferenceBlock>,
-    ) -> Self {
+    pub fn search_result_block(tool_references: Vec<BetaRequestToolReferenceBlock>) -> Self {
         Self::SearchResultBlock(BetaRequestToolSearchToolSearchResultBlock {
             tool_references,
             ..Default::default()
@@ -5327,13 +4346,7 @@ impl BetaRequestToolSearchToolResultBlockContent {
     }
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestToolSearchToolResultError {
@@ -5344,13 +4357,7 @@ pub struct BetaRequestToolSearchToolResultError {
     pub r#type: String,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestToolSearchToolSearchResultBlock {
@@ -5363,13 +4370,7 @@ pub struct BetaRequestToolSearchToolSearchResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestToolUseBlock {
@@ -5392,13 +4393,7 @@ pub struct BetaRequestToolUseBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestWebFetchResultBlock {
@@ -5416,13 +4411,7 @@ pub struct BetaRequestWebFetchResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestWebFetchToolResultBlock {
@@ -5432,9 +4421,7 @@ pub struct BetaRequestWebFetchToolResultBlock {
     pub content: BetaRequestWebFetchToolResultBlockContent,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub tool_use_id: String,
     #[doc(hidden)]
@@ -5458,13 +4445,7 @@ impl BetaRequestWebFetchToolResultBlockContent {
     }
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestWebFetchToolResultError {
@@ -5476,13 +4457,7 @@ pub struct BetaRequestWebFetchToolResultError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestWebSearchResultBlock {
@@ -5500,13 +4475,7 @@ pub struct BetaRequestWebSearchResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestWebSearchResultLocationCitation {
@@ -5524,13 +4493,7 @@ pub struct BetaRequestWebSearchResultLocationCitation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestWebSearchToolResultBlock {
@@ -5540,9 +4503,7 @@ pub struct BetaRequestWebSearchToolResultBlock {
     pub content: BetaRequestWebSearchToolResultBlockContent,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub tool_use_id: String,
     #[doc(hidden)]
@@ -5566,13 +4527,7 @@ impl BetaRequestWebSearchToolResultBlockContent {
     }
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaRequestWebSearchToolResultError {
@@ -5584,13 +4539,7 @@ pub struct BetaRequestWebSearchToolResultError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseBashCodeExecutionOutputBlock {
@@ -5603,13 +4552,7 @@ pub struct BetaResponseBashCodeExecutionOutputBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseBashCodeExecutionResultBlock {
@@ -5627,22 +4570,14 @@ pub struct BetaResponseBashCodeExecutionResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseBashCodeExecutionToolResultBlock {
     pub content: BetaResponseBashCodeExecutionToolResultBlockContent,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub tool_use_id: String,
     #[doc(hidden)]
@@ -5667,13 +4602,7 @@ impl BetaResponseBashCodeExecutionToolResultBlockContent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseBashCodeExecutionToolResultError {
@@ -5685,13 +4614,7 @@ pub struct BetaResponseBashCodeExecutionToolResultError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseCharLocationCitation {
@@ -5718,13 +4641,7 @@ pub struct BetaResponseCitationsConfig {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseClearThinking20251015Edit {
@@ -5742,13 +4659,7 @@ pub struct BetaResponseClearThinking20251015Edit {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseClearToolUses20250919Edit {
@@ -5766,13 +4677,7 @@ pub struct BetaResponseClearToolUses20250919Edit {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseCodeExecutionOutputBlock {
@@ -5785,13 +4690,7 @@ pub struct BetaResponseCodeExecutionOutputBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseCodeExecutionResultBlock {
@@ -5809,22 +4708,14 @@ pub struct BetaResponseCodeExecutionResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseCodeExecutionToolResultBlock {
     pub content: BetaResponseCodeExecutionToolResultBlockContent,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub tool_use_id: String,
     #[doc(hidden)]
@@ -5849,13 +4740,7 @@ impl BetaResponseCodeExecutionToolResultBlockContent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseCodeExecutionToolResultError {
@@ -5868,13 +4753,7 @@ pub struct BetaResponseCodeExecutionToolResultError {
 ///Response model for a file uploaded to the container.
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseContainerUploadBlock {
@@ -5887,13 +4766,7 @@ pub struct BetaResponseContainerUploadBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseContentBlockLocationCitation {
@@ -5918,13 +4791,7 @@ pub struct BetaResponseContextManagement {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseDocumentBlock {
@@ -5968,28 +4835,21 @@ impl<'de> serde::Deserialize<'de> for BetaResponseDocumentBlockSource {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("base64") => {
-                serde_json::from_value(value)
-                    .map(Self::Base64PDF)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("text") => {
-                serde_json::from_value(value)
-                    .map(Self::PlainText)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("base64") => serde_json::from_value(value)
+                .map(Self::Base64PDF)
+                .map_err(serde::de::Error::custom),
+            Some("text") => serde_json::from_value(value)
+                .map(Self::PlainText)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -6009,13 +4869,7 @@ impl BetaResponseDocumentBlockSource {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseMCPToolResultBlock {
@@ -6041,13 +4895,7 @@ pub enum BetaResponseMCPToolResultBlockContent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseMCPToolUseBlock {
@@ -6070,13 +4918,7 @@ pub struct BetaResponseMCPToolUseBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponsePageLocationCitation {
@@ -6096,13 +4938,7 @@ pub struct BetaResponsePageLocationCitation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseRedactedThinkingBlock {
@@ -6115,13 +4951,7 @@ pub struct BetaResponseRedactedThinkingBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseSearchResultLocationCitation {
@@ -6142,13 +4972,7 @@ pub struct BetaResponseSearchResultLocationCitation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseServerToolUseBlock {
@@ -6156,9 +4980,7 @@ pub struct BetaResponseServerToolUseBlock {
     pub caller: Option<ToolUseBlockCaller>,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub id: String,
     pub input: std::collections::HashMap<String, serde_json::Value>,
@@ -6170,13 +4992,7 @@ pub struct BetaResponseServerToolUseBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseTextBlock {
@@ -6202,13 +5018,7 @@ pub enum BetaResponseTextBlockCitations {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseTextEditorCodeExecutionCreateResultBlock {
@@ -6220,13 +5030,7 @@ pub struct BetaResponseTextEditorCodeExecutionCreateResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseTextEditorCodeExecutionStrReplaceResultBlock {
@@ -6242,22 +5046,14 @@ pub struct BetaResponseTextEditorCodeExecutionStrReplaceResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseTextEditorCodeExecutionToolResultBlock {
     pub content: BetaResponseTextEditorCodeExecutionToolResultBlockContent,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub tool_use_id: String,
     #[doc(hidden)]
@@ -6295,13 +5091,7 @@ impl BetaResponseTextEditorCodeExecutionToolResultBlockContent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseTextEditorCodeExecutionToolResultError {
@@ -6314,13 +5104,7 @@ pub struct BetaResponseTextEditorCodeExecutionToolResultError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseTextEditorCodeExecutionViewResultBlock {
@@ -6337,13 +5121,7 @@ pub struct BetaResponseTextEditorCodeExecutionViewResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseThinkingBlock {
@@ -6358,13 +5136,7 @@ pub struct BetaResponseThinkingBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseToolReferenceBlock {
@@ -6380,22 +5152,14 @@ pub struct BetaResponseToolReferenceBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseToolSearchToolResultBlock {
     pub content: BetaResponseToolSearchToolResultBlockContent,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub tool_use_id: String,
     #[doc(hidden)]
@@ -6417,9 +5181,7 @@ impl BetaResponseToolSearchToolResultBlockContent {
             ..Default::default()
         })
     }
-    pub fn search_result_block(
-        tool_references: Vec<BetaResponseToolReferenceBlock>,
-    ) -> Self {
+    pub fn search_result_block(tool_references: Vec<BetaResponseToolReferenceBlock>) -> Self {
         Self::SearchResultBlock(BetaResponseToolSearchToolSearchResultBlock {
             tool_references,
             ..Default::default()
@@ -6428,13 +5190,7 @@ impl BetaResponseToolSearchToolResultBlockContent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseToolSearchToolResultError {
@@ -6447,13 +5203,7 @@ pub struct BetaResponseToolSearchToolResultError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseToolSearchToolSearchResultBlock {
@@ -6466,13 +5216,7 @@ pub struct BetaResponseToolSearchToolSearchResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseToolUseBlock {
@@ -6493,13 +5237,7 @@ pub struct BetaResponseToolUseBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseWebFetchResultBlock {
@@ -6517,22 +5255,14 @@ pub struct BetaResponseWebFetchResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseWebFetchToolResultBlock {
     pub content: BetaResponseWebFetchToolResultBlockContent,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub tool_use_id: String,
     #[doc(hidden)]
@@ -6557,13 +5287,7 @@ impl BetaResponseWebFetchToolResultBlockContent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseWebFetchToolResultError {
@@ -6575,13 +5299,7 @@ pub struct BetaResponseWebFetchToolResultError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseWebSearchResultBlock {
@@ -6599,13 +5317,7 @@ pub struct BetaResponseWebSearchResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseWebSearchResultLocationCitation {
@@ -6623,22 +5335,14 @@ pub struct BetaResponseWebSearchResultLocationCitation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseWebSearchToolResultBlock {
     pub content: BetaResponseWebSearchToolResultBlockContent,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub tool_use_id: String,
     #[doc(hidden)]
@@ -6663,13 +5367,7 @@ impl BetaResponseWebSearchToolResultBlockContent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaResponseWebSearchToolResultError {
@@ -6681,21 +5379,13 @@ pub struct BetaResponseWebSearchToolResultError {
 }
 ///Tool invocation generated by a server-side tool.
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaServerToolCaller {
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub tool_id: String,
     #[serde(rename = "type")]
@@ -6705,13 +5395,7 @@ pub struct BetaServerToolCaller {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaServerToolUsage {
@@ -6726,13 +5410,7 @@ pub struct BetaServerToolUsage {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaSignatureContentBlockDelta {
@@ -6745,13 +5423,7 @@ pub struct BetaSignatureContentBlockDelta {
 }
 ///A skill that was loaded in a container (response model).
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct BetaSkill {
     ///Skill ID
@@ -6767,13 +5439,7 @@ pub struct BetaSkill {
 ///Specification for a skill to be loaded in a container (request model).
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields)]
 pub struct BetaSkillParams {
@@ -6788,16 +5454,7 @@ pub struct BetaSkillParams {
     pub version: Option<String>,
 }
 ///Type of skill - either 'anthropic' (built-in) or 'custom' (user-defined)
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum BetaSkillParamsType {
     #[serde(rename = "anthropic")]
     #[default]
@@ -6815,13 +5472,7 @@ impl core::fmt::Display for BetaSkillParamsType {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaSkillVersion {
@@ -6864,16 +5515,7 @@ pub struct BetaSkillVersion {
     #[validate(length(min = 1u64))]
     pub version: String,
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum BetaStopReason {
     #[serde(rename = "end_turn")]
     #[default]
@@ -6908,13 +5550,7 @@ impl core::fmt::Display for BetaStopReason {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaSucceededResult {
@@ -6927,13 +5563,7 @@ pub struct BetaSucceededResult {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaTextContentBlockDelta {
@@ -6946,13 +5576,7 @@ pub struct BetaTextContentBlockDelta {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaTextEditor20241022 {
@@ -6977,13 +5601,7 @@ pub struct BetaTextEditor20241022 {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaTextEditor20250124 {
@@ -7008,13 +5626,7 @@ pub struct BetaTextEditor20250124 {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaTextEditor20250429 {
@@ -7039,13 +5651,7 @@ pub struct BetaTextEditor20250429 {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaTextEditor20250728 {
@@ -7070,16 +5676,7 @@ pub struct BetaTextEditor20250728 {
     #[default("text_editor_20250728".to_string())]
     pub r#type: String,
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum BetaTextEditorCodeExecutionToolResultErrorCode {
     #[serde(rename = "invalid_tool_input")]
     #[default]
@@ -7115,13 +5712,7 @@ pub struct BetaThinkingConfigDisabled {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaThinkingConfigEnabled {
@@ -7172,28 +5763,21 @@ impl<'de> serde::Deserialize<'de> for BetaThinkingConfigParam {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("disabled") => {
-                serde_json::from_value(value)
-                    .map(Self::Disabled)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("enabled") => {
-                serde_json::from_value(value)
-                    .map(Self::Enabled)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("disabled") => serde_json::from_value(value)
+                .map(Self::Disabled)
+                .map_err(serde::de::Error::custom),
+            Some("enabled") => serde_json::from_value(value)
+                .map(Self::Enabled)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -7210,13 +5794,7 @@ impl BetaThinkingConfigParam {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaThinkingContentBlockDelta {
@@ -7228,13 +5806,7 @@ pub struct BetaThinkingContentBlockDelta {
     pub r#type: Option<String>,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaThinkingTurns {
@@ -7275,28 +5847,21 @@ impl<'de> serde::Deserialize<'de> for BetaThinkingTurnsKind {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("all") => {
-                serde_json::from_value(value)
-                    .map(Self::All)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("thinking_turns") => {
-                serde_json::from_value(value)
-                    .map(Self::BetaThinkingTurns)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("all") => serde_json::from_value(value)
+                .map(Self::All)
+                .map_err(serde::de::Error::custom),
+            Some("thinking_turns") => serde_json::from_value(value)
+                .map(Self::BetaThinkingTurns)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -7316,13 +5881,7 @@ impl BetaThinkingTurnsKind {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields)]
 pub struct BetaTool {
@@ -7383,38 +5942,27 @@ impl<'de> serde::Deserialize<'de> for BetaToolChoice {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("any") => {
-                serde_json::from_value(value)
-                    .map(Self::Any)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("auto") => {
-                serde_json::from_value(value)
-                    .map(Self::Auto)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("none") => {
-                serde_json::from_value(value)
-                    .map(Self::None)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("tool") => {
-                serde_json::from_value(value)
-                    .map(Self::Tool)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("any") => serde_json::from_value(value)
+                .map(Self::Any)
+                .map_err(serde::de::Error::custom),
+            Some("auto") => serde_json::from_value(value)
+                .map(Self::Auto)
+                .map_err(serde::de::Error::custom),
+            Some("none") => serde_json::from_value(value)
+                .map(Self::None)
+                .map_err(serde::de::Error::custom),
+            Some("tool") => serde_json::from_value(value)
+                .map(Self::Tool)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -7486,13 +6034,7 @@ pub struct BetaToolChoiceNone {
 ///The model will use the specified tool with `tool_choice.name`.
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaToolChoiceTool {
@@ -7561,13 +6103,7 @@ impl BetaToolKind {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaToolSearchToolBm2520251119 {
@@ -7587,16 +6123,7 @@ pub struct BetaToolSearchToolBm2520251119 {
     #[serde(rename = "type")]
     pub r#type: BetaToolSearchToolBm2520251119Type,
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum BetaToolSearchToolBm2520251119Type {
     #[serde(rename = "tool_search_tool_bm25_20251119")]
     #[default]
@@ -7616,13 +6143,7 @@ impl core::fmt::Display for BetaToolSearchToolBm2520251119Type {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaToolSearchToolRegex20251119 {
@@ -7642,16 +6163,7 @@ pub struct BetaToolSearchToolRegex20251119 {
     #[serde(rename = "type")]
     pub r#type: BetaToolSearchToolRegex20251119Type,
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum BetaToolSearchToolRegex20251119Type {
     #[serde(rename = "tool_search_tool_regex_20251119")]
     #[default]
@@ -7669,16 +6181,7 @@ impl core::fmt::Display for BetaToolSearchToolRegex20251119Type {
         }
     }
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum BetaToolSearchToolResultErrorCode {
     #[serde(rename = "invalid_tool_input")]
     #[default]
@@ -7701,13 +6204,7 @@ impl core::fmt::Display for BetaToolSearchToolResultErrorCode {
     }
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaToolUsesKeep {
@@ -7719,13 +6216,7 @@ pub struct BetaToolUsesKeep {
     pub value: i64,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaToolUsesTrigger {
@@ -7737,13 +6228,7 @@ pub struct BetaToolUsesTrigger {
     pub value: i64,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaURLImageSource {
@@ -7755,13 +6240,7 @@ pub struct BetaURLImageSource {
     pub url: String,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaURLPDFSource {
@@ -7774,13 +6253,7 @@ pub struct BetaURLPDFSource {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct BetaUsage {
     ///Breakdown of cached tokens by TTL
@@ -7804,13 +6277,7 @@ pub struct BetaUsage {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaUserLocation {
@@ -7829,13 +6296,7 @@ pub struct BetaUserLocation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaWebFetchTool20250910 {
@@ -7867,16 +6328,7 @@ pub struct BetaWebFetchTool20250910 {
     #[default("web_fetch_20250910".to_string())]
     pub r#type: String,
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum BetaWebFetchToolResultErrorCode {
     #[serde(rename = "invalid_tool_input")]
     #[default]
@@ -7912,13 +6364,7 @@ impl core::fmt::Display for BetaWebFetchToolResultErrorCode {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct BetaWebSearchTool20250305 {
@@ -7949,16 +6395,7 @@ pub struct BetaWebSearchTool20250305 {
     #[validate(nested)]
     pub user_location: Option<BetaUserLocation>,
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum BetaWebSearchToolResultErrorCode {
     #[serde(rename = "invalid_tool_input")]
     #[default]
@@ -7985,13 +6422,7 @@ impl core::fmt::Display for BetaWebSearchToolResultErrorCode {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BetaapiSchemasSkillsSkill {
@@ -8031,13 +6462,7 @@ pub struct BetaapiSchemasSkillsSkill {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct BillingError {
@@ -8071,13 +6496,7 @@ pub struct BodyCreateSkillVersionV1SkillsSkillIdVersionsPost {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct CacheControlEphemeral {
@@ -8101,16 +6520,7 @@ pub struct CacheControlEphemeral {
 ///- `1h`: 1 hour
 ///
 ///Defaults to `5m`.
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum CacheControlEphemeralTtl {
     #[serde(rename = "5m")]
     #[default]
@@ -8128,13 +6538,7 @@ impl core::fmt::Display for CacheControlEphemeralTtl {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct CacheCreation {
@@ -8149,13 +6553,7 @@ pub struct CacheCreation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct CanceledResult {
@@ -8166,13 +6564,7 @@ pub struct CanceledResult {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct CitationsDelta {
@@ -8218,55 +6610,36 @@ impl<'de> serde::Deserialize<'de> for CitationsDeltaCitation {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("char_location") => {
-                serde_json::from_value(value)
-                    .map(Self::Char)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("content_block_location") => {
-                serde_json::from_value(value)
-                    .map(Self::ContentBlock)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("page_location") => {
-                serde_json::from_value(value)
-                    .map(Self::Page)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("search_result_location") => {
-                serde_json::from_value(value)
-                    .map(Self::SearchResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("web_search_result_location") => {
-                serde_json::from_value(value)
-                    .map(Self::WebSearchResult)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("char_location") => serde_json::from_value(value)
+                .map(Self::Char)
+                .map_err(serde::de::Error::custom),
+            Some("content_block_location") => serde_json::from_value(value)
+                .map(Self::ContentBlock)
+                .map_err(serde::de::Error::custom),
+            Some("page_location") => serde_json::from_value(value)
+                .map(Self::Page)
+                .map_err(serde::de::Error::custom),
+            Some("search_result_location") => serde_json::from_value(value)
+                .map(Self::SearchResult)
+                .map_err(serde::de::Error::custom),
+            Some("web_search_result_location") => serde_json::from_value(value)
+                .map(Self::WebSearchResult)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields)]
 pub struct CompletionRequest {
@@ -8333,13 +6706,7 @@ pub struct CompletionRequest {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct CompletionResponse {
@@ -8407,48 +6774,33 @@ impl<'de> serde::Deserialize<'de> for ContentBlock {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("redacted_thinking") => {
-                serde_json::from_value(value)
-                    .map(Self::RedactedThinking)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("server_tool_use") => {
-                serde_json::from_value(value)
-                    .map(Self::ServerToolUse)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("text") => {
-                serde_json::from_value(value)
-                    .map(Self::Text)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("thinking") => {
-                serde_json::from_value(value)
-                    .map(Self::Thinking)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("tool_use") => {
-                serde_json::from_value(value)
-                    .map(Self::ToolUse)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("web_search_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::WebSearchToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("redacted_thinking") => serde_json::from_value(value)
+                .map(Self::RedactedThinking)
+                .map_err(serde::de::Error::custom),
+            Some("server_tool_use") => serde_json::from_value(value)
+                .map(Self::ServerToolUse)
+                .map_err(serde::de::Error::custom),
+            Some("text") => serde_json::from_value(value)
+                .map(Self::Text)
+                .map_err(serde::de::Error::custom),
+            Some("thinking") => serde_json::from_value(value)
+                .map(Self::Thinking)
+                .map_err(serde::de::Error::custom),
+            Some("tool_use") => serde_json::from_value(value)
+                .map(Self::ToolUse)
+                .map_err(serde::de::Error::custom),
+            Some("web_search_tool_result") => serde_json::from_value(value)
+                .map(Self::WebSearchToolResult)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -8507,43 +6859,30 @@ impl<'de> serde::Deserialize<'de> for ContentBlockDeltaEventDelta {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("citations_delta") => {
-                serde_json::from_value(value)
-                    .map(Self::Citations)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("input_json_delta") => {
-                serde_json::from_value(value)
-                    .map(Self::InputJsonContentBlock)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("signature_delta") => {
-                serde_json::from_value(value)
-                    .map(Self::SignatureContentBlock)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("text_delta") => {
-                serde_json::from_value(value)
-                    .map(Self::TextContentBlock)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("thinking_delta") => {
-                serde_json::from_value(value)
-                    .map(Self::ThinkingContentBlock)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("citations_delta") => serde_json::from_value(value)
+                .map(Self::Citations)
+                .map_err(serde::de::Error::custom),
+            Some("input_json_delta") => serde_json::from_value(value)
+                .map(Self::InputJsonContentBlock)
+                .map_err(serde::de::Error::custom),
+            Some("signature_delta") => serde_json::from_value(value)
+                .map(Self::SignatureContentBlock)
+                .map_err(serde::de::Error::custom),
+            Some("text_delta") => serde_json::from_value(value)
+                .map(Self::TextContentBlock)
+                .map_err(serde::de::Error::custom),
+            Some("thinking_delta") => serde_json::from_value(value)
+                .map(Self::ThinkingContentBlock)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -8580,13 +6919,7 @@ impl ContentBlockDeltaEventDelta {
     }
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct ContentBlockSource {
@@ -8762,13 +7095,7 @@ pub struct CountMessageTokensResponse {
     pub input_tokens: i64,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields)]
 pub struct CreateMessageBatchParams {
@@ -8778,13 +7105,7 @@ pub struct CreateMessageBatchParams {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields)]
 pub struct CreateMessageParams {
@@ -8971,13 +7292,7 @@ pub enum CreateMessageParamsSystem {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields)]
 pub struct CreateMessageParamsWithoutStream {
@@ -9150,13 +7465,7 @@ pub struct CreateMessageParamsWithoutStream {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct CreateSkillResponse {
@@ -9196,13 +7505,7 @@ pub struct CreateSkillResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct CreateSkillVersionResponse {
@@ -9247,13 +7550,7 @@ pub struct CreateSkillVersionResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct DeleteMessageBatchResponse {
@@ -9270,13 +7567,7 @@ pub struct DeleteMessageBatchResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct DeleteSkillResponse {
@@ -9295,13 +7586,7 @@ pub struct DeleteSkillResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct DeleteSkillVersionResponse {
@@ -9320,13 +7605,7 @@ pub struct DeleteSkillVersionResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ErrorResponse {
@@ -9381,63 +7660,42 @@ impl<'de> serde::Deserialize<'de> for ErrorResponseError {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("api_error") => {
-                serde_json::from_value(value)
-                    .map(Self::API)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("authentication_error") => {
-                serde_json::from_value(value)
-                    .map(Self::Authentication)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("billing_error") => {
-                serde_json::from_value(value)
-                    .map(Self::Billing)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("timeout_error") => {
-                serde_json::from_value(value)
-                    .map(Self::GatewayTimeout)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("invalid_request_error") => {
-                serde_json::from_value(value)
-                    .map(Self::InvalidRequest)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("not_found_error") => {
-                serde_json::from_value(value)
-                    .map(Self::NotFound)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("overloaded_error") => {
-                serde_json::from_value(value)
-                    .map(Self::Overloaded)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("permission_error") => {
-                serde_json::from_value(value)
-                    .map(Self::Permission)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("rate_limit_error") => {
-                serde_json::from_value(value)
-                    .map(Self::RateLimit)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("api_error") => serde_json::from_value(value)
+                .map(Self::API)
+                .map_err(serde::de::Error::custom),
+            Some("authentication_error") => serde_json::from_value(value)
+                .map(Self::Authentication)
+                .map_err(serde::de::Error::custom),
+            Some("billing_error") => serde_json::from_value(value)
+                .map(Self::Billing)
+                .map_err(serde::de::Error::custom),
+            Some("timeout_error") => serde_json::from_value(value)
+                .map(Self::GatewayTimeout)
+                .map_err(serde::de::Error::custom),
+            Some("invalid_request_error") => serde_json::from_value(value)
+                .map(Self::InvalidRequest)
+                .map_err(serde::de::Error::custom),
+            Some("not_found_error") => serde_json::from_value(value)
+                .map(Self::NotFound)
+                .map_err(serde::de::Error::custom),
+            Some("overloaded_error") => serde_json::from_value(value)
+                .map(Self::Overloaded)
+                .map_err(serde::de::Error::custom),
+            Some("permission_error") => serde_json::from_value(value)
+                .map(Self::Permission)
+                .map_err(serde::de::Error::custom),
+            Some("rate_limit_error") => serde_json::from_value(value)
+                .map(Self::RateLimit)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -9472,13 +7730,7 @@ impl ErrorResponseError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ErroredResult {
@@ -9491,13 +7743,7 @@ pub struct ErroredResult {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ExpiredResult {
@@ -9508,13 +7754,7 @@ pub struct ExpiredResult {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct FileDeleteResponse {
@@ -9530,13 +7770,7 @@ pub struct FileDeleteResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct FileListResponse {
@@ -9553,13 +7787,7 @@ pub struct FileListResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct FileMetadataSchema {
@@ -9592,13 +7820,7 @@ pub struct FileMetadataSchema {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct GatewayTimeoutError {
@@ -9612,13 +7834,7 @@ pub struct GatewayTimeoutError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct GetSkillResponse {
@@ -9658,13 +7874,7 @@ pub struct GetSkillResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct GetSkillVersionResponse {
@@ -9753,68 +7963,45 @@ impl<'de> serde::Deserialize<'de> for InputContentBlock {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("document") => {
-                serde_json::from_value(value)
-                    .map(Self::Document)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("image") => {
-                serde_json::from_value(value)
-                    .map(Self::Image)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("redacted_thinking") => {
-                serde_json::from_value(value)
-                    .map(Self::RedactedThinking)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("search_result") => {
-                serde_json::from_value(value)
-                    .map(Self::SearchResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("server_tool_use") => {
-                serde_json::from_value(value)
-                    .map(Self::ServerToolUse)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("text") => {
-                serde_json::from_value(value)
-                    .map(Self::Text)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("thinking") => {
-                serde_json::from_value(value)
-                    .map(Self::Thinking)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::ToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("tool_use") => {
-                serde_json::from_value(value)
-                    .map(Self::ToolUse)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("web_search_tool_result") => {
-                serde_json::from_value(value)
-                    .map(Self::WebSearchToolResult)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("document") => serde_json::from_value(value)
+                .map(Self::Document)
+                .map_err(serde::de::Error::custom),
+            Some("image") => serde_json::from_value(value)
+                .map(Self::Image)
+                .map_err(serde::de::Error::custom),
+            Some("redacted_thinking") => serde_json::from_value(value)
+                .map(Self::RedactedThinking)
+                .map_err(serde::de::Error::custom),
+            Some("search_result") => serde_json::from_value(value)
+                .map(Self::SearchResult)
+                .map_err(serde::de::Error::custom),
+            Some("server_tool_use") => serde_json::from_value(value)
+                .map(Self::ServerToolUse)
+                .map_err(serde::de::Error::custom),
+            Some("text") => serde_json::from_value(value)
+                .map(Self::Text)
+                .map_err(serde::de::Error::custom),
+            Some("thinking") => serde_json::from_value(value)
+                .map(Self::Thinking)
+                .map_err(serde::de::Error::custom),
+            Some("tool_result") => serde_json::from_value(value)
+                .map(Self::ToolResult)
+                .map_err(serde::de::Error::custom),
+            Some("tool_use") => serde_json::from_value(value)
+                .map(Self::ToolUse)
+                .map_err(serde::de::Error::custom),
+            Some("web_search_tool_result") => serde_json::from_value(value)
+                .map(Self::WebSearchToolResult)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -9852,13 +8039,7 @@ impl InputContentBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct InputJsonContentBlockDelta {
@@ -9882,16 +8063,7 @@ pub enum InputMessageContent {
     String(String),
     Array(Vec<InputContentBlock>),
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum InputMessageRole {
     #[serde(rename = "user")]
     #[default]
@@ -9909,13 +8081,7 @@ impl core::fmt::Display for InputMessageRole {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct InputSchema {
@@ -9928,13 +8094,7 @@ pub struct InputSchema {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct InvalidRequestError {
@@ -9948,13 +8108,7 @@ pub struct InvalidRequestError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct ListResponseMessageBatch {
     #[validate(nested)]
@@ -9968,13 +8122,7 @@ pub struct ListResponseMessageBatch {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct ListResponseModelInfo {
     #[validate(nested)]
@@ -9988,13 +8136,7 @@ pub struct ListResponseModelInfo {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct ListSkillVersionsResponse {
     ///List of skill versions.
@@ -10007,13 +8149,7 @@ pub struct ListSkillVersionsResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct ListSkillsResponse {
     ///List of skills.
@@ -10030,13 +8166,7 @@ pub struct ListSkillsResponse {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct Message {
@@ -10109,13 +8239,7 @@ pub struct Message {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct MessageBatch {
@@ -10152,13 +8276,7 @@ pub struct MessageBatch {
     pub r#type: Option<String>,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields)]
 pub struct MessageBatchIndividualRequestParams {
@@ -10175,13 +8293,7 @@ pub struct MessageBatchIndividualRequestParams {
 }
 ///This is a single line in the response `.jsonl` file and does not represent the response as a whole.
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct MessageBatchIndividualResponse {
     ///Developer-provided ID created for each request in a Message Batch. Useful for matching results to requests, as results may be given out of request order.
@@ -10231,38 +8343,27 @@ impl<'de> serde::Deserialize<'de> for MessageBatchIndividualResponseResult {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("canceled") => {
-                serde_json::from_value(value)
-                    .map(Self::Canceled)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("errored") => {
-                serde_json::from_value(value)
-                    .map(Self::Errored)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("expired") => {
-                serde_json::from_value(value)
-                    .map(Self::Expired)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("succeeded") => {
-                serde_json::from_value(value)
-                    .map(Self::Succeeded)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("canceled") => serde_json::from_value(value)
+                .map(Self::Canceled)
+                .map_err(serde::de::Error::custom),
+            Some("errored") => serde_json::from_value(value)
+                .map(Self::Errored)
+                .map_err(serde::de::Error::custom),
+            Some("expired") => serde_json::from_value(value)
+                .map(Self::Expired)
+                .map_err(serde::de::Error::custom),
+            Some("succeeded") => serde_json::from_value(value)
+                .map(Self::Succeeded)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -10293,16 +8394,7 @@ impl MessageBatchIndividualResponseResult {
     }
 }
 ///Processing status of the Message Batch.
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum MessageBatchProcessingStatus {
     #[serde(rename = "in_progress")]
     #[default]
@@ -10329,13 +8421,7 @@ pub struct MessageDelta {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct MessageDeltaEvent {
@@ -10349,13 +8435,7 @@ pub struct MessageDeltaEvent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct MessageDeltaUsage {
     ///The cumulative number of input tokens used to create the cache entry.
@@ -10372,13 +8452,7 @@ pub struct MessageDeltaUsage {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct MessageStartEvent {
@@ -10436,48 +8510,33 @@ impl<'de> serde::Deserialize<'de> for MessageStreamEvent {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("content_block_delta") => {
-                serde_json::from_value(value)
-                    .map(Self::ContentBlockDelta)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("content_block_start") => {
-                serde_json::from_value(value)
-                    .map(Self::ContentBlockStart)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("content_block_stop") => {
-                serde_json::from_value(value)
-                    .map(Self::ContentBlockStop)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("message_delta") => {
-                serde_json::from_value(value)
-                    .map(Self::MessageDelta)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("message_start") => {
-                serde_json::from_value(value)
-                    .map(Self::MessageStart)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("message_stop") => {
-                serde_json::from_value(value)
-                    .map(Self::MessageStop)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("content_block_delta") => serde_json::from_value(value)
+                .map(Self::ContentBlockDelta)
+                .map_err(serde::de::Error::custom),
+            Some("content_block_start") => serde_json::from_value(value)
+                .map(Self::ContentBlockStart)
+                .map_err(serde::de::Error::custom),
+            Some("content_block_stop") => serde_json::from_value(value)
+                .map(Self::ContentBlockStop)
+                .map_err(serde::de::Error::custom),
+            Some("message_delta") => serde_json::from_value(value)
+                .map(Self::MessageDelta)
+                .map_err(serde::de::Error::custom),
+            Some("message_start") => serde_json::from_value(value)
+                .map(Self::MessageStart)
+                .map_err(serde::de::Error::custom),
+            Some("message_stop") => serde_json::from_value(value)
+                .map(Self::MessageStop)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -10609,13 +8668,7 @@ impl core::fmt::Display for Model {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ModelInfo {
@@ -10636,16 +8689,7 @@ pub struct ModelInfo {
     pub r#type: Option<String>,
 }
 ///Known values for the string enum.
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum ModelKnown {
     ///Premium model combining maximum intelligence with practical performance
     #[serde(rename = "claude-opus-4-5-20251101")]
@@ -10743,13 +8787,7 @@ impl core::fmt::Display for ModelKnown {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct NotFoundError {
@@ -10763,13 +8801,7 @@ pub struct NotFoundError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct OverloadedError {
@@ -10783,13 +8815,7 @@ pub struct OverloadedError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct PermissionError {
@@ -10802,13 +8828,7 @@ pub struct PermissionError {
     pub r#type: Option<String>,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct PlainTextSource {
@@ -10824,13 +8844,7 @@ pub struct PlainTextSource {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct RateLimitError {
@@ -10872,28 +8886,21 @@ impl<'de> serde::Deserialize<'de> for RequestBlockKind {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("image") => {
-                serde_json::from_value(value)
-                    .map(Self::Image)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("text") => {
-                serde_json::from_value(value)
-                    .map(Self::Text)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("image") => serde_json::from_value(value)
+                .map(Self::Image)
+                .map_err(serde::de::Error::custom),
+            Some("text") => serde_json::from_value(value)
+                .map(Self::Text)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -10945,38 +8952,27 @@ impl<'de> serde::Deserialize<'de> for RequestBlockKind2 {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("document") => {
-                serde_json::from_value(value)
-                    .map(Self::Document)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("image") => {
-                serde_json::from_value(value)
-                    .map(Self::Image)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("search_result") => {
-                serde_json::from_value(value)
-                    .map(Self::SearchResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("text") => {
-                serde_json::from_value(value)
-                    .map(Self::Text)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("document") => serde_json::from_value(value)
+                .map(Self::Document)
+                .map_err(serde::de::Error::custom),
+            Some("image") => serde_json::from_value(value)
+                .map(Self::Image)
+                .map_err(serde::de::Error::custom),
+            Some("search_result") => serde_json::from_value(value)
+                .map(Self::SearchResult)
+                .map_err(serde::de::Error::custom),
+            Some("text") => serde_json::from_value(value)
+                .map(Self::Text)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -11002,13 +8998,7 @@ impl RequestBlockKind2 {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestCharLocationCitation {
@@ -11033,13 +9023,7 @@ pub struct RequestCitationsConfig {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestContentBlockLocationCitation {
@@ -11086,13 +9070,7 @@ pub struct RequestCounts {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestDocumentBlock {
@@ -11142,38 +9120,27 @@ impl<'de> serde::Deserialize<'de> for RequestDocumentBlockSource {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("base64") => {
-                serde_json::from_value(value)
-                    .map(Self::Base64PDF)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("content") => {
-                serde_json::from_value(value)
-                    .map(Self::ContentBlock)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("text") => {
-                serde_json::from_value(value)
-                    .map(Self::PlainText)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("url") => {
-                serde_json::from_value(value)
-                    .map(Self::URLPDF)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("base64") => serde_json::from_value(value)
+                .map(Self::Base64PDF)
+                .map_err(serde::de::Error::custom),
+            Some("content") => serde_json::from_value(value)
+                .map(Self::ContentBlock)
+                .map_err(serde::de::Error::custom),
+            Some("text") => serde_json::from_value(value)
+                .map(Self::PlainText)
+                .map_err(serde::de::Error::custom),
+            Some("url") => serde_json::from_value(value)
+                .map(Self::URLPDF)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -11205,13 +9172,7 @@ impl RequestDocumentBlockSource {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestImageBlock {
@@ -11254,28 +9215,21 @@ impl<'de> serde::Deserialize<'de> for RequestImageBlockSource {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("base64") => {
-                serde_json::from_value(value)
-                    .map(Self::Base64)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("url") => {
-                serde_json::from_value(value)
-                    .map(Self::URL)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("base64") => serde_json::from_value(value)
+                .map(Self::Base64)
+                .map_err(serde::de::Error::custom),
+            Some("url") => serde_json::from_value(value)
+                .map(Self::URL)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -11323,55 +9277,36 @@ impl<'de> serde::Deserialize<'de> for RequestLocationCitationKind {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("char_location") => {
-                serde_json::from_value(value)
-                    .map(Self::Char)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("content_block_location") => {
-                serde_json::from_value(value)
-                    .map(Self::ContentBlock)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("page_location") => {
-                serde_json::from_value(value)
-                    .map(Self::Page)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("search_result_location") => {
-                serde_json::from_value(value)
-                    .map(Self::SearchResult)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("web_search_result_location") => {
-                serde_json::from_value(value)
-                    .map(Self::WebSearchResult)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("char_location") => serde_json::from_value(value)
+                .map(Self::Char)
+                .map_err(serde::de::Error::custom),
+            Some("content_block_location") => serde_json::from_value(value)
+                .map(Self::ContentBlock)
+                .map_err(serde::de::Error::custom),
+            Some("page_location") => serde_json::from_value(value)
+                .map(Self::Page)
+                .map_err(serde::de::Error::custom),
+            Some("search_result_location") => serde_json::from_value(value)
+                .map(Self::SearchResult)
+                .map_err(serde::de::Error::custom),
+            Some("web_search_result_location") => serde_json::from_value(value)
+                .map(Self::WebSearchResult)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestPageLocationCitation {
@@ -11390,13 +9325,7 @@ pub struct RequestPageLocationCitation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestRedactedThinkingBlock {
@@ -11409,13 +9338,7 @@ pub struct RequestRedactedThinkingBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestSearchResultBlock {
@@ -11436,13 +9359,7 @@ pub struct RequestSearchResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestSearchResultLocationCitation {
@@ -11463,13 +9380,7 @@ pub struct RequestSearchResultLocationCitation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestServerToolUseBlock {
@@ -11478,9 +9389,7 @@ pub struct RequestServerToolUseBlock {
     pub cache_control: Option<CacheControlEphemeral>,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub id: String,
     pub input: std::collections::HashMap<String, serde_json::Value>,
@@ -11494,13 +9403,7 @@ pub struct RequestServerToolUseBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestTextBlock {
@@ -11523,13 +9426,7 @@ pub enum RequestTextBlockCitations {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestThinkingBlock {
@@ -11544,13 +9441,7 @@ pub struct RequestThinkingBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestToolResultBlock {
@@ -11578,13 +9469,7 @@ pub enum RequestToolResultBlockContent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestToolUseBlock {
@@ -11606,13 +9491,7 @@ pub struct RequestToolUseBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestWebSearchResultBlock {
@@ -11630,13 +9509,7 @@ pub struct RequestWebSearchResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestWebSearchResultLocationCitation {
@@ -11654,13 +9527,7 @@ pub struct RequestWebSearchResultLocationCitation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestWebSearchToolResultBlock {
@@ -11670,9 +9537,7 @@ pub struct RequestWebSearchToolResultBlock {
     pub content: RequestWebSearchToolResultBlockContent,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub tool_use_id: String,
     #[doc(hidden)]
@@ -11696,13 +9561,7 @@ impl RequestWebSearchToolResultBlockContent {
     }
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct RequestWebSearchToolResultError {
@@ -11714,13 +9573,7 @@ pub struct RequestWebSearchToolResultError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ResponseCharLocationCitation {
@@ -11740,13 +9593,7 @@ pub struct ResponseCharLocationCitation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ResponseContentBlockLocationCitation {
@@ -11766,13 +9613,7 @@ pub struct ResponseContentBlockLocationCitation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ResponsePageLocationCitation {
@@ -11792,13 +9633,7 @@ pub struct ResponsePageLocationCitation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ResponseRedactedThinkingBlock {
@@ -11811,13 +9646,7 @@ pub struct ResponseRedactedThinkingBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ResponseSearchResultLocationCitation {
@@ -11838,21 +9667,13 @@ pub struct ResponseSearchResultLocationCitation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ResponseServerToolUseBlock {
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub id: String,
     pub input: std::collections::HashMap<String, serde_json::Value>,
@@ -11866,13 +9687,7 @@ pub struct ResponseServerToolUseBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ResponseTextBlock {
@@ -11898,13 +9713,7 @@ pub enum ResponseTextBlockCitations {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ResponseThinkingBlock {
@@ -11919,13 +9728,7 @@ pub struct ResponseThinkingBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ResponseToolUseBlock {
@@ -11944,13 +9747,7 @@ pub struct ResponseToolUseBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ResponseWebSearchResultBlock {
@@ -11968,13 +9765,7 @@ pub struct ResponseWebSearchResultBlock {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ResponseWebSearchResultLocationCitation {
@@ -11992,22 +9783,14 @@ pub struct ResponseWebSearchResultLocationCitation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ResponseWebSearchToolResultBlock {
     pub content: ResponseWebSearchToolResultBlockContent,
     #[validate(
         length(min = 1u64),
-        regex(
-            path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID"
-        )
+        regex(path = "REGEX_BETA_REQUEST_BASH_CODE_EXECUTION_TOOL_RESULT_BLOCK_TOOL_USE_ID")
     )]
     pub tool_use_id: String,
     #[doc(hidden)]
@@ -12032,13 +9815,7 @@ impl ResponseWebSearchToolResultBlockContent {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ResponseWebSearchToolResultError {
@@ -12050,13 +9827,7 @@ pub struct ResponseWebSearchToolResultError {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ServerToolUsage {
@@ -12065,16 +9836,7 @@ pub struct ServerToolUsage {
     #[default(Some(0i64))]
     pub web_search_requests: Option<i64>,
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum ServerToolUseBlockName {
     #[serde(rename = "web_search")]
     #[default]
@@ -12108,16 +9870,7 @@ impl core::fmt::Display for ServerToolUseBlockName {
 ///Determines whether to use priority capacity (if available) or standard capacity for this request.
 ///
 ///Anthropic offers different levels of service for your API requests. See [service-tiers](https://docs.claude.com/en/api/service-tiers) for details.
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum ServiceTier {
     #[serde(rename = "auto")]
     #[default]
@@ -12135,13 +9888,7 @@ impl core::fmt::Display for ServiceTier {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct SignatureContentBlockDelta {
@@ -12154,13 +9901,7 @@ pub struct SignatureContentBlockDelta {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct Skill {
@@ -12200,13 +9941,7 @@ pub struct Skill {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct SkillVersion {
@@ -12249,16 +9984,7 @@ pub struct SkillVersion {
     #[validate(length(min = 1u64))]
     pub version: String,
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum StopReason {
     #[serde(rename = "end_turn")]
     #[default]
@@ -12288,13 +10014,7 @@ impl core::fmt::Display for StopReason {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct SucceededResult {
@@ -12317,13 +10037,7 @@ pub enum System {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct TextContentBlockDelta {
@@ -12336,13 +10050,7 @@ pub struct TextContentBlockDelta {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct TextEditor20250124 {
@@ -12362,13 +10070,7 @@ pub struct TextEditor20250124 {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct TextEditor20250429 {
@@ -12388,13 +10090,7 @@ pub struct TextEditor20250429 {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct TextEditor20250728 {
@@ -12414,16 +10110,7 @@ pub struct TextEditor20250728 {
     #[default("text_editor_20250728".to_string())]
     pub r#type: String,
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum TextEditorCodeExecutionViewResultBlockFileType {
     #[serde(rename = "text")]
     #[default]
@@ -12453,13 +10140,7 @@ pub struct ThinkingConfigDisabled {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct ThinkingConfigEnabled {
@@ -12510,28 +10191,21 @@ impl<'de> serde::Deserialize<'de> for ThinkingConfigParam {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("disabled") => {
-                serde_json::from_value(value)
-                    .map(Self::Disabled)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("enabled") => {
-                serde_json::from_value(value)
-                    .map(Self::Enabled)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("disabled") => serde_json::from_value(value)
+                .map(Self::Disabled)
+                .map_err(serde::de::Error::custom),
+            Some("enabled") => serde_json::from_value(value)
+                .map(Self::Enabled)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -12548,13 +10222,7 @@ impl ThinkingConfigParam {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(default)]
 pub struct ThinkingContentBlockDelta {
@@ -12567,13 +10235,7 @@ pub struct ThinkingContentBlockDelta {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields)]
 pub struct Tool {
@@ -12629,38 +10291,27 @@ impl<'de> serde::Deserialize<'de> for ToolChoice {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("any") => {
-                serde_json::from_value(value)
-                    .map(Self::Any)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("auto") => {
-                serde_json::from_value(value)
-                    .map(Self::Auto)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("none") => {
-                serde_json::from_value(value)
-                    .map(Self::None)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("tool") => {
-                serde_json::from_value(value)
-                    .map(Self::Tool)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("any") => serde_json::from_value(value)
+                .map(Self::Any)
+                .map_err(serde::de::Error::custom),
+            Some("auto") => serde_json::from_value(value)
+                .map(Self::Auto)
+                .map_err(serde::de::Error::custom),
+            Some("none") => serde_json::from_value(value)
+                .map(Self::None)
+                .map_err(serde::de::Error::custom),
+            Some("tool") => serde_json::from_value(value)
+                .map(Self::Tool)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -12732,13 +10383,7 @@ pub struct ToolChoiceNone {
 ///The model will use the specified tool with `tool_choice.name`.
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct ToolChoiceTool {
@@ -12800,28 +10445,21 @@ impl<'de> serde::Deserialize<'de> for ToolUseBlockCaller {
         D: serde::Deserializer<'de>,
     {
         let value = serde_json::Value::deserialize(deserializer)?;
-        match value.get(Self::DISCRIMINATOR_FIELD).and_then(|v| v.as_str()) {
-            Some("direct") => {
-                serde_json::from_value(value)
-                    .map(Self::Direct)
-                    .map_err(serde::de::Error::custom)
-            }
-            Some("code_execution_20250825") => {
-                serde_json::from_value(value)
-                    .map(Self::ServerTool)
-                    .map_err(serde::de::Error::custom)
-            }
+        match value
+            .get(Self::DISCRIMINATOR_FIELD)
+            .and_then(|v| v.as_str())
+        {
+            Some("direct") => serde_json::from_value(value)
+                .map(Self::Direct)
+                .map_err(serde::de::Error::custom),
+            Some("code_execution_20250825") => serde_json::from_value(value)
+                .map(Self::ServerTool)
+                .map_err(serde::de::Error::custom),
             None => Err(serde::de::Error::missing_field(Self::DISCRIMINATOR_FIELD)),
-            Some(other) => {
-                Err(
-                    serde::de::Error::custom(
-                        format!(
-                            "Unknown discriminator value '{}' for field '{}'", other,
-                            "type"
-                        ),
-                    ),
-                )
-            }
+            Some(other) => Err(serde::de::Error::custom(format!(
+                "Unknown discriminator value '{}' for field '{}'",
+                other, "type"
+            ))),
         }
     }
 }
@@ -12842,13 +10480,7 @@ impl ToolUseBlockCaller {
     }
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct URLImageSource {
@@ -12860,13 +10492,7 @@ pub struct URLImageSource {
     pub url: String,
 }
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct URLPDFSource {
@@ -12879,13 +10505,7 @@ pub struct URLPDFSource {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 pub struct Usage {
     ///Breakdown of cached tokens by TTL
@@ -12909,13 +10529,7 @@ pub struct Usage {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct UserLocation {
@@ -12934,13 +10548,7 @@ pub struct UserLocation {
 }
 #[serde_with::skip_serializing_none]
 #[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Serialize,
-    Deserialize,
-    validator::Validate,
-    oas3_gen_support::Default
+    Debug, Clone, PartialEq, Serialize, Deserialize, validator::Validate, oas3_gen_support::Default,
 )]
 #[serde(deny_unknown_fields, default)]
 pub struct WebSearchTool20250305 {
@@ -12967,16 +10575,7 @@ pub struct WebSearchTool20250305 {
     #[validate(nested)]
     pub user_location: Option<UserLocation>,
 }
-#[derive(
-    Debug,
-    Clone,
-    PartialEq,
-    Eq,
-    Hash,
-    Serialize,
-    Deserialize,
-    oas3_gen_support::Default
-)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize, oas3_gen_support::Default)]
 pub enum WebSearchToolResultErrorCode {
     #[serde(rename = "invalid_tool_input")]
     #[default]
@@ -13001,4 +10600,3 @@ impl core::fmt::Display for WebSearchToolResultErrorCode {
         }
     }
 }
-

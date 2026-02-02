@@ -88,7 +88,6 @@ where
         .take_while(|ev| {
             future::ready(match ev {
                 // Ok(Event::Event(message)) if message.data == "[DONE]" => false,
-
                 Err(eventsource_client::Error::Eof) => false,
 
                 _ => true,
