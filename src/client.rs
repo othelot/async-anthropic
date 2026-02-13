@@ -82,14 +82,13 @@ where
     let s = event_source
         .take_while(|ev| {
             future::ready(match ev {
-                // Ok(Event::Event(message)) if message.data == "[DONE]" => false,
+                Ok(Event::Message(message)) if message.data == "[DONE]" => false,
                 Err(reqwest_eventsource::Error::StreamEnded) => false,
 
                 _ => true,
             })
         })
         .filter_map(|ev| async move {
-            println!("Event: {:?}", ev);
             match ev {
                 Err(e) => Some(Err(StreamError::ReqwestEventstreamError(e))),
 
@@ -104,10 +103,6 @@ where
                     Some(parsed)
                 }
 
-                // Ok(Event::Comment(comment)) => {
-                //     println!("Comment: {}", comment);
-                //     None
-                // }
                 Ok(Event::Open) => None,
             }
         });
