@@ -27,6 +27,6 @@ impl<'a> Messages<'a> {
         // let mut request = request.clone();
         request.stream = Some(true);
 
-        Ok(self.client.post_stream(request)?)
+        Ok(self.client.post_stream(request).await?)
     }
 }

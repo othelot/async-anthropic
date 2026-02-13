@@ -1,7 +1,6 @@
-use eventsource_client::Client as _;
-use eventsource_client::SSE as Event;
 use futures::future;
 use futures::{StreamExt, stream::BoxStream};
+use reqwest_eventsource::{Event, EventSource, RequestBuilderExt};
 use serde::{Serialize, de::DeserializeOwned};
 
 use crate::error::StreamError;
@@ -34,10 +33,9 @@ impl Client {
 
         let res = client
             .post(format!("{}/messages", self.config.base_url).as_str())
-            .header("Content-Type", "application/json")
             .header("anthropic-version", self.config.api_version.clone())
             .header("x-api-key", self.config.api_key.clone())
-            .body(serde_json::to_string(&body)?)
+            .json(&body)
             .send()
             .await?
             .error_for_status()?;
@@ -47,7 +45,7 @@ impl Client {
     }
 
     //  pub type BoxStream<T> = Pin<boxed::Box<dyn Stream<Item = T> + Send + Sync>>;
-    pub fn post_stream<'a, I, O>(
+    pub async fn post_stream<'a, I, O>(
         &self,
         body: I,
     ) -> Result<BoxStream<'a, std::result::Result<O, StreamError>>>
@@ -55,21 +53,18 @@ impl Client {
         I: Serialize,
         O: DeserializeOwned + std::marker::Send + 'static,
     {
-        let event_source = eventsource_client::ClientBuilder::for_url(
-            format!("{}/messages", self.config.base_url).as_str(),
-        )?
-        .method("POST".into())
-        .header("Content-Type", "application/json")?
-        .header(
-            "anthropic-version",
-            self.config.api_version.clone().as_str(),
-        )?
-        .header("x-api-key", self.config.api_key.clone().as_str())?
-        .body(serde_json::to_string(&body)?)
-        .build()
-        .stream();
+        let client = reqwest::Client::new();
 
-        Ok(stream(event_source))
+        let res = client
+            .post(format!("{}/messages", self.config.base_url).as_str())
+            .header(
+                "anthropic-version",
+                self.config.api_version.clone().as_str(),
+            )
+            .header("x-api-key", self.config.api_key.clone().as_str())
+            .json(&body);
+
+        Ok(stream(res.eventsource()?))
     }
 
     #[cfg(feature = "messages")]
@@ -79,7 +74,7 @@ impl Client {
 }
 
 pub(crate) fn stream<O>(
-    event_source: BoxStream<'static, eventsource_client::Result<Event>>,
+    event_source: EventSource,
 ) -> BoxStream<'static, std::result::Result<O, StreamError>>
 where
     O: DeserializeOwned + Send + 'static,
@@ -88,7 +83,7 @@ where
         .take_while(|ev| {
             future::ready(match ev {
                 // Ok(Event::Event(message)) if message.data == "[DONE]" => false,
-                Err(eventsource_client::Error::Eof) => false,
+                Err(reqwest_eventsource::Error::StreamEnded) => false,
 
                 _ => true,
             })
@@ -96,10 +91,10 @@ where
         .filter_map(|ev| async move {
             println!("Event: {:?}", ev);
             match ev {
-                Err(e) => Some(Err(StreamError::EventsourceClientError(e))),
+                Err(e) => Some(Err(StreamError::ReqwestEventstreamError(e))),
 
-                Ok(Event::Event(message)) => {
-                    if message.event_type == "ping" {
+                Ok(Event::Message(message)) => {
+                    if message.event == "ping" {
                         return None;
                     }
 
@@ -109,12 +104,11 @@ where
                     Some(parsed)
                 }
 
-                Ok(Event::Comment(comment)) => {
-                    println!("Comment: {}", comment);
-                    None
-                }
-
-                Ok(Event::Connected(_)) => None,
+                // Ok(Event::Comment(comment)) => {
+                //     println!("Comment: {}", comment);
+                //     None
+                // }
+                Ok(Event::Open) => None,
             }
         });
 
